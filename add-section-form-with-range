@@ -1,0 +1,316 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<div class="container center">
+  
+  <div class="range">
+  
+
+<div class="range-in">
+  <input id="points" type="range" value="100" step="100" min="100" max="10000" />
+</div>
+    <div class="values">
+    <span id="value"> 0 </span>
+</div>
+    
+    
+  </div>
+  
+  
+  
+  
+<div class="row pricing-tab">
+  {% for block in section.blocks %}
+  <div class="col-sm-6 col-md-3 selecttoshow color-{{forloop.index}}">
+     
+     {%if block.settings.text-click != blank%}
+    <h5 class="h4f"> {{block.settings.text-click}} </h5> 
+        {%endif%}
+    
+      <div class="block" data-id="child-f-{{forloop.index}}">
+        
+        <div class="outer-div-block"> 
+          {%if block.settings.text-click-1 != blank%} <div> {{block.settings.text-click-1}}</div>    {%endif%}
+          {%if block.settings.text-click-2 != blank%} <div>  {{block.settings.text-click-2}}</div>      {%endif%}
+        </div>
+        <div class="outer-div-block"> 
+          {%if block.settings.text-click-3 != blank%} <div> {{block.settings.text-click-3}}</div>    {%endif%}
+          {%if block.settings.text-click-4 != blank%} <div>  {{block.settings.text-click-4}}</div>      {%endif%}
+        </div>
+        <div class="outer-div-block"> 
+          {%if block.settings.text-click-5 != blank%} <div> {{block.settings.text-click-5}}</div>    {%endif%}
+          {%if block.settings.text-click-6 != blank%} <div>  {{block.settings.text-click-6}}</div>      {%endif%}
+        </div>
+        <div class="outer-div-block"> 
+          {%if block.settings.text-click-7 != blank%} <div> {{block.settings.text-click-7}}</div>    {%endif%}
+          {%if block.settings.text-click-8 != blank%} <div>  {{block.settings.text-click-8}}</div>      {%endif%}
+        </div>
+        {%if block.settings.text-click-9 != blank%}
+        <div class="single-text-box"> {{block.settings.text-click-9}}</div>        
+        {%endif%} 
+        {%if block.settings.text-click-10 != blank%}
+        <div class="single-text-box"> {{block.settings.text-click-10}}</div>        
+        {%endif%} 
+        {%if block.settings.text-click-11 != blank%}
+        <div class="single-text-box"> {{block.settings.text-click-11}}</div>        
+        {%endif%} 
+        {%if block.settings.text-click-12 != blank%}
+        <div class="single-text-box"> {{block.settings.text-click-12}}</div>        
+        {%endif%} 
+        {%if block.settings.text-click-13 != blank%}
+        <div class="single-text-box"> {{block.settings.text-click-13}}</div>        
+        {%endif%} 
+        {%if block.settings.text-click-14 != blank%}
+        <div class="single-text-box"> {{block.settings.text-click-14}}</div>        
+        {%endif%} 
+        {%if block.settings.text-click-15 != blank%}
+        <div class="single-text-box"> {{block.settings.text-click-15}}</div>        
+        {%endif%} 
+        {%if block.settings.text-click-16 != blank%}
+        <div class="single-text-box"> {{block.settings.text-click-16}}</div>        
+        {%endif%} 
+       
+      </div>
+    
+     <a class="btn show-when-highlit"> select</a>
+    
+    
+    
+  </div>
+  {% endfor%}
+</div>
+  
+  <div class="clr"></div>
+  
+  <div class="row znvdl">
+   
+    <div class="col-sm-12">
+    <div id="child-f-1" class="form-1 comncls">
+      
+<h6 class="block-tittle"> Book a Call </h6>       
+      <br />
+            <div class="contact-form bg-form form-vertical">
+        {%- assign formId = 'ContactForm' -%}
+        {% form 'contact', id: formId %}
+      {%include 'form-status'%}
+              <input type="hidden" name="contact[buget-price]" value="" id="budgetph" >
+
+        <div class="defult-form">
+          <div class="cal6">
+            <label for="{{ formId }}-name">{{ 'contact.form.name' | t }}</label>
+            <input required type="text" id="{{ formId }}-name" name="contact[name]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+          </div>
+          <div class="cal6"> 
+            <label for="{{ formId }}-name">{{ 'contact.form.lname' | t }}</label>
+            <input required type="text" id="{{ formId }}-name" name="contact[Lastname]" value="{% if form[Lastname] %}{{ form[Lastname] }}{% elsif customer %}{{ customer.lastname }}{% endif %}">
+          </div>
+          <div class="cal12">
+            <label for="{{ formId }}-email">{{ 'contact.form.email' | t }} <span aria-hidden="true">*</span></label>
+            <input
+                   type="email"
+                   id="{{ formId }}-email"
+                   name="contact[email]"
+                   autocorrect="off"
+                   autocapitalize="off"
+                   value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                   aria-required="true"
+                   {%- if form.errors contains 'email' -%}
+                   class="input--error"
+                   aria-invalid="true"
+                   aria-describedby="{{ formId }}-email-error"
+                   {%- endif -%}
+                   required
+                   >
+            <span id="{{ formId}}-email-error" class="input-error-message">{% include 'icon-error' %} {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+          </div>
+          <div class="cal12"> 
+            <label for="{{ formId }}-phone">{{ 'contact.form.phone' | t }}</label>
+            <input required type="tel" id="{{ formId }}-phone" name="contact[phone]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+          </div>
+          <div class="cal12"> 
+            <label for="{{ formId }}-name">{{ 'contact.form.companyname' | t }}</label>
+            <input required type="text" id="{{ formId }}-name" name="contact[companyname]" value="{% if form[companyname] %}{{ form[companyname] }}{% elsif customer %}{{ customer.lastname }}{% endif %}">
+          </div>
+          <div class="cal12"> 
+            <label for="{{ formId }}-name">{{ 'contact.form.industry' | t }}</label>
+            <input required type="text" id="{{ formId }}-name" name="contact[industry]" value="{% if form[industry] %}{{ form[industry] }}{% elsif customer %}{{ customer.lastname }}{% endif %}">
+          </div>
+          <div class="cal12"> 
+            <label for="{{ formId }}-name">{{ 'contact.form.marketing' | t }}</label>
+            <input required type="text" id="{{ formId }}-name" name="contact[marketing]" value="{% if form[marketing] %}{{ form[marketing] }}{% elsif customer %}{{ customer.lastname }}{% endif %}">
+          </div>
+          <div class="cal12"> 
+            <label for="{{ formId }}-name">{{ 'contact.form.objective' | t }}</label>
+            <input required type="text" id="{{ formId }}-name" name="contact[objective]" value="{% if form[objective] %}{{ form[objective] }}{% elsif customer %}{{ customer.lastname }}{% endif %}">
+          </div>
+          <div class="cal12"> 
+            <label for="{{ formId }}-name">{{ 'contact.form.budget' | t }}</label>
+            <input required type="text" id="{{ formId }}-name" name="contact[budget]" value="{% if form[budget] %}{{ form[budget] }}{% elsif customer %}{{ customer.lastname }}{% endif %}">
+          </div>
+        </div>
+        <div class="text-center">
+          <input  type="submit" class="btn" value="Get Started">
+        </div>
+         {% endform %}
+      </div>
+    </div>
+    </div>
+  </div>
+  
+</div>
+
+{% schema %}
+{
+"name": "boxes instructions",
+"class": "title-boxes instructions",
+"settings": [
+{
+"type": "checkbox",
+"id": "enable",
+"label": "Show"
+}
+],
+"blocks": [
+{
+"type": "block",
+"name": "Block",
+"settings": [
+{
+"type": "text",
+"id": "text-click",
+"label": "heading"
+},
+{
+"type": "text",
+"id": "text-click-1",
+"label": "campaigns text"
+},
+{
+"type": "text",
+"id": "text-click-2",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-3",
+"label": "ad sets text"
+},
+{
+"type": "text",
+"id": "text-click-4",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-5",
+"label": "adverts text"
+},
+{
+"type": "text",
+"id": "text-click-6",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-7",
+"label": "Channels text"
+},
+{
+"type": "text",
+"id": "text-click-8",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-9",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-10",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-11",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-12",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-13",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-14",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-15",
+"label": "text"
+},
+{
+"type": "text",
+"id": "text-click-16",
+"label": "text"
+}
+
+]
+}
+]
+}
+{% endschema %}
+<script type="text/javascript">
+  
+  $( '.selecttoshow .btn' ).hide();
+  
+  $('input[type=range]').on('change', function(){
+    $alertval = $(this).val();
+    $('#child-f-1').hide();
+    $( '.selecttoshow .btn' ).hide();
+    if(($alertval > 0) && ($alertval <= 999)){
+      $( '.color-1' ).addClass( "highlight" );
+    }else{
+    	$( '.color-1' ).removeClass( "highlight" );
+    }
+    
+    if(($alertval > 999) && ($alertval <= 2499)){
+    	$( '.color-2' ).addClass( "highlight" );
+    }else{
+    	$( '.color-2' ).removeClass( "highlight" );
+    }
+    
+      
+    if(($alertval > 4999) && ($alertval <= 9999)){
+      $( '.color-3' ).addClass( "highlight" );
+    }else {
+      $( '.color-3' ).removeClass( "highlight" );
+    }
+        if(($alertval > 9999) && ($alertval == 10000)){
+      $( '.color-4' ).addClass( "highlight" );
+    }else {
+      $( '.color-4' ).removeClass( "highlight" );
+    }
+
+    
+    $('.highlight').find('.btn').show();
+    
+
+    $('#value').text($alertval);
+
+  });
+  
+  $('.show-when-highlit').click(function(){
+  	var ad =  $(this).parent().find('.h4f').text();
+    $('#budgetph').val(ad);
+    $('#child-f-1').show();
+    
+  });
+  
+</script>
